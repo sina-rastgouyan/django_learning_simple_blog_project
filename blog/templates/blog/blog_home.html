@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+
+{% block page_title %} Blog| Home page {% endblock %}
+
+{% block content%}
+    {% for post in post_list %}
+        <div class="card shadow-sm my-3">
+            <div class="card-body">
+                <h5 class="card-title">{{post.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted small py-2">{{post.edited_time}}</h6>
+                <p class="card-text py-3">
+                    {{post.content}}
+                </p>
+                <div>
+                    <a class="btn btn-sm btn-success" href="{% url 'post_detail' post.id %}">Read More</a>
+                    <a class="btn btn-sm btn-warning" href="{% url 'edit_post' post.id %}">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'delete_post' post.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+{% endblock %}
